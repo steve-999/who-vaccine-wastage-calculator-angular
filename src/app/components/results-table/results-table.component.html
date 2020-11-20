@@ -1,0 +1,31 @@
+<table class="results-table">
+    <tbody>
+        <tr>
+            <th rowspan="3">Variable</th>
+            <th colspan="4">6 hours</th>
+            <th colspan="4">28 days</th>
+        </tr>
+        <tr>
+            <th colspan="4">Doses per vial</th>
+            <th colspan="4">Doses per vial</th>
+        </tr>
+        <tr>
+            <th>2</th>
+            <th>5</th>
+            <th>10</th>
+            <th>20</th>
+            <th>2</th>
+            <th>5</th>
+            <th>10</th>
+            <th>20</th>                        
+        </tr>                            
+        <tr>
+            <td>Expected Wastage</td>
+            <td *ngFor="let val of expectedWastageOutput">{{ val }}</td>
+        </tr>
+        <tr>
+            <td>Expected Wastage</td>
+            <td *ngFor="let val of forecastNeedOutput">{{ val }}</td>
+        </tr>
+    </tbody>
+</table> 

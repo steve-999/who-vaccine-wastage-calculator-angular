@@ -1,0 +1,123 @@
+<div class="home-container">
+    <form #formVar="ngForm" class="input-form">
+        <h3 class="input-form-title">Vaccine & Campaign inputs</h3> 
+
+        <div class="form-controls-grid-container">                        
+
+            <div class="grid-numDosesAdministeredLabel">
+                <label for="numDosesAdministered">
+                    Number of doses administered
+                </label>
+            </div>
+             <div class="grid-numDosesAdministeredInput">
+                <input type="text" name="numDosesAdministered" id="numDosesAdministered" 
+                    placeholder="e.g. 50000" [(ngModel)]="numDosesAdministered" 
+                    (input)="handleInputChange($event.target.name, $event.target.value)" />
+            </div>
+ 
+            <div class="grid-numLocationsLabel">
+                <label for="numLocations">
+                    Number of vaccination locations (or teams)
+                </label>
+            </div>
+            <div class="grid-numLocationsInput">
+                <input type="text" name="numLocations" id="numLocations" 
+                        placeholder="e.g. 200" [(ngModel)]="numLocations" 
+                        (input)="handleInputChange($event.target.name, $event.target.value)" />
+            </div>
+
+            <div class="grid-numDaysLabel">
+                <label for="numDays">Number of days</label>
+            </div> 
+            <div class="grid-numDaysInput">
+                <input type="text" name="numDays" id="numDays" placeholder="e.g. 10"
+                        [(ngModel)]="numDays" 
+                        (input)="handleInputChange($event.target.name, $event.target.value)" /> 
+            </div>                                                                       
+
+            <!-- ******************************************************************************************************************* -->
+
+            <div class="grid-closedVialWastage-container">
+
+                <div class="grid-closedVialWastageCheckbox">     
+                    <label for="closedVialWastageCheckbox">
+                        <input type="checkbox" name="closedVialWastageCheckbox" id="closedVialWastageCheckbox" 
+                        [(ngModel)]="closedVialWastageCheckbox" 
+                        (click)="handleInputChange($event.target.name, $event.target.checked)" />                         
+                        &nbsp;Include closed vial wastage?
+                    </label>                                                                       
+                </div>  
+               
+                <div class="grid-closedVialWastageInputTextLabel">   
+                    <label class="grid-closedVialWastageInputTextLabel" 
+                            for="closedVialWastage">Closed vial wastage (%)</label>
+                </div>
+                <div  class="grid-closedVialWastageInputText">
+                    <input type="text" name="closedVialWastage" id="closedVialWastage" placeholder="e.g. 1"
+                            [(ngModel)]="closedVialWastage" 
+                            (input)="handleInputChange($event.target.name, $event.target.value)"
+                            [disabled]="!closedVialWastageCheckbox" />   
+                </div>                                                                    
+                                        
+                <div class="grid-numStorageLevelsLabels">     
+                    <label class="grid-numStorageLevelsLabel" 
+                            for="numStorageLevels">Number of storage levels</label>
+                </div>
+                <div class="grid-numStorageLevels"> 
+                    <input type="text" name="numStorageLevels" id="numStorageLevels" placeholder="e.g. 3"
+                            [(ngModel)]="numStorageLevels" 
+                            (input)="handleInputChange($event.target.name, $event.target.value)"
+                            [disabled]="!closedVialWastageCheckbox" />                                                                        
+                </div>  
+            </div>                                              
+
+           
+
+            <div class="grid-openedVialWastage-container">
+
+                <div class="grid-openedVialWastageCheckbox">     
+                    <label for="openedVialWastageCheckbox">
+                        <input type="checkbox" name="openedVialWastageCheckbox" id="openedVialWastageCheckbox" 
+                                [(ngModel)]="openedVialWastageCheckbox" 
+                                (click)="handleInputChange($event.target.name, $event.target.checked)" />                         
+                        &nbsp;Include avoidable opened vial wastage?
+                    </label>                                                                       
+                </div>   
+
+                <div class="grid-openedVialWastageInputTextLabel">     
+                    <label class="grid-openedVialWastageInputTextLabel" 
+                             for="openedVialWastage">Avoidable opened vial wastage (%)</label>
+                </div>
+                <div class="grid-openedVialWastageInputText">
+                    <input type="text" name="openedVialWastage" id="openedVialWastage" placeholder="e.g. 5"
+                            [(ngModel)]="openedVialWastage" 
+                            (input)="handleInputChange($event.target.name, $event.target.value)"
+                            [disabled]="!openedVialWastageCheckbox" />                                                                        
+                </div> 
+            </div>  
+
+        </div>                                          
+    </form>
+
+
+
+    <div class="results-container">
+        <div class="calculated-params-container">
+            <table class="calculated-params-table">
+                <tbody>
+                    <tr>
+                        <td width="70%">Number of sessions:</td>
+                        <td><span *ngIf="numSessions">{{ numSessions }}</span></td>
+                    </tr>
+                    <tr>
+                        <td width="70%">Mean doses administered:</td>
+                        <td><span *ngIf="meanDosesAdministered">{{ meanDosesAdministered.toFixed(2) }}</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <app-results-table  [expectedWastageOutput]="expectedWastageOutput" 
+                            [forecastNeedOutput]="forecastNeedOutput"></app-results-table>
+    </div>
+</div>
